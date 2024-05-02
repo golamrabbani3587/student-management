@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "18e6f184-dfea-4b3c-975d-66ac5713e521",
+		"name": "student-management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27456613"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"rabbanii\",\n    \"email\":\"rabbaniii@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"rabbanii@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-student",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhYmJhbmlpQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNzE0NjcwMzA3LCJleHAiOjE3MTQ2NzM5MDd9.THIf26VCd1OYfkx9MrJbIOVUbGURSEKqpphlAQK0xmA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"John Doe\",\n  \"age\": 25,\n  \"gender\": \"male\",\n  \"course\": \"Computer Science\",\n  \"hobby\": \"Reading\",\n  \"admissionDate\": \"2024-05-02\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/students",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all students",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhYmJhbmlpQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNzE0NjcwMzA3LCJleHAiOjE3MTQ2NzM5MDd9.THIf26VCd1OYfkx9MrJbIOVUbGURSEKqpphlAQK0xmA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/students?auth",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"students"
+					],
+					"query": [
+						{
+							"key": "auth",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update student",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhYmJhbmlpQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNzE0NjcwMzA3LCJleHAiOjE3MTQ2NzM5MDd9.THIf26VCd1OYfkx9MrJbIOVUbGURSEKqpphlAQK0xmA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"John Doee\",\n  \"age\": 25,\n  \"gender\": \"male\",\n  \"course\": \"Computer Science\",\n  \"hobby\": \"Reading\",\n  \"admissionDate\": \"2024-05-02\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/students/3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"students",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get one student",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhYmJhbmlpQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNzE0NjcwMzA3LCJleHAiOjE3MTQ2NzM5MDd9.THIf26VCd1OYfkx9MrJbIOVUbGURSEKqpphlAQK0xmA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/students/3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"students",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cache student count",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhYmJhbmlpQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNzE0NjcwMzA3LCJleHAiOjE3MTQ2NzM5MDd9.THIf26VCd1OYfkx9MrJbIOVUbGURSEKqpphlAQK0xmA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/students/count",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"students",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete student",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhYmJhbmlpQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNzE0NjcwMzA3LCJleHAiOjE3MTQ2NzM5MDd9.THIf26VCd1OYfkx9MrJbIOVUbGURSEKqpphlAQK0xmA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/students/1?auth",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"students",
+						"1"
+					],
+					"query": [
+						{
+							"key": "auth",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
