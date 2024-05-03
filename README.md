@@ -48,7 +48,9 @@ In the studentsService file there is a function to update students. I have writt
 I have used JWT for all student routes. And added CORS and CSRF validation in the main.ts file.
 
 ## Dockerization
-I have created the docker file.
+I have created the docker file. To run properly the docker we need to change the host for redis and pg. other wise it docker container will try to connect the servers and failed. 
+docker build -t student-management .
+docker run -d -p 3000:3000 student-management  
 
 
 ## Testing and Documentation
