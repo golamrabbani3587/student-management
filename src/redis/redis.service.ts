@@ -21,4 +21,10 @@ export class RedisService {
         const count = await this.redisClient.get('studentCounter');
         return parseInt(count || '0');
     }
+
+    async getAssignment(): Promise<string[]> {
+        return this.redisClient.lrange('hobbyQueue', 0, -1);
+    }
+    
+
 }

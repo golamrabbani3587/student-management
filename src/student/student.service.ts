@@ -62,9 +62,9 @@ export class StudentService {
       .createQueryBuilder('student')
       .where('student.id = :id', { id })
       .getOne();
-        this.io.of('/').to('students').emit('student-updated', updatedStudent);
+      this.io.of('/').emit('student-updated', updatedStudent);
   
-        await this.hobbyAssignmentService.assignRandomHobbyToStudent(id);
+      await this.hobbyAssignmentService.assignRandomHobbyToStudent(id);
     return updatedStudent;
   }
 
@@ -77,4 +77,9 @@ export class StudentService {
   async getStudentCount(): Promise<number> {
     return await this.redisService.getCounter();
   }
+
+  async getStudentAssignment(): Promise<any> {
+    return await this.redisService.getAssignment();
+  }
+
 }

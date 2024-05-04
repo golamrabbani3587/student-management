@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Updates</title>
+</head>
+<body>
+    <h1>Student Updates</h1>
+    <ul id="studentList"></ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+    <script>
+        const serverAddress = 'http://localhost:3001';
+        const socket = io(serverAddress);
+
+        socket.on('connect', () => {
+            console.log('Connected to server');
+            socket.emit('join', 'students'); // Join the 'students' room
+        });
+
+        socket.on('student-updated', (updatedStudent) => {
+            console.log(updatedStudent); // Log the student object
+
+            const studentListItem = document.getElementById(`student-${updatedStudent.id}`);
+            if (studentListItem) {
+                studentListItem.textContent = `${updatedStudent.name} - Age: ${updatedStudent.age}, Gender: ${updatedStudent.gender}`;
+            } else {
+                const studentList = document.getElementById('studentList');
+                const newStudentItem = document.createElement('li');
+                newStudentItem.id = `student-${updatedStudent.id}`;
+                newStudentItem.textContent = `${updatedStudent.name} - Age: ${updatedStudent.age}, Gender: ${updatedStudent.gender}`;
+                studentList.appendChild(newStudentItem);
+            }
+        });
+
+        socket.on('disconnect', () => {
+            console.log('Disconnected from server');
+        });
+    </script>
+</body>
+</html>

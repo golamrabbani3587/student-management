@@ -24,6 +24,13 @@ export class StudentController {
   async getStudentCount(): Promise<number> {
     return await this.studentService.getStudentCount();
   }
+
+  @Get('/assignment')
+  @UseGuards(JwtAuthGuard)
+  async getStudentAssignment(): Promise<number> {
+    return await this.studentService.getStudentAssignment();
+  }
+
   @Get(':id')
   @UseGuards(JwtAuthGuard)
   findOne(@Param('id') id: string): Promise<Student> {
