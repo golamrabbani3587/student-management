@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards,UsePipes,HttpException,HttpStatus } from '@nestjs/common';
 import { StudentService } from './student.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guards';
 import { Student } from './student.entity';
+import { validate } from 'class-validator';
 
 @Controller('students')
 export class StudentController {
@@ -9,8 +10,15 @@ export class StudentController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  create(@Body() studentData: Partial<Student>): Promise<Student> {
-    return this.studentService.create(studentData);
+  async create(@Body() studentData: Partial<Student>): Promise<Student> {
+    const newStudent = new Student();
+    Object.assign(newStudent, studentData);
+    const errors = await validate(newStudent);
+    if (errors.length > 0) {
+      const errorMessage = errors.map(error => Object.values(error.constraints)).join(', ');
+      throw new HttpException(`Validation failed: ${errorMessage}`, HttpStatus.BAD_REQUEST);
+    }
+    return this.studentService.create(newStudent);
   }
 
   @Get()
